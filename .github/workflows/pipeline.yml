@@ -18,11 +18,11 @@ jobs:
 
       - name: Setup Application
         run: |
-          npm install
+          npm install:all
           npx playwright install --with-deps
 
       - name: Code Quality Checks
-        run: npm run eslint
+        run: npm run lint
 
       - name: Test Suite
         run: |
