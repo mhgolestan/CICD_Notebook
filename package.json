@@ -13,7 +13,7 @@
     "build": "cd client && npm run build",
     "lint": "concurrently \"npm run lint:server\" \"npm run client:client\"",
     "lint:server": "cd server && eslint .",
-    "lint:client": "eslint .",
+    "lint:client": "cd client && eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "install:all": "npm install && cd client && npm install && cd ../server && npm install"
   },
   "author": "",

@@ -19,9 +19,9 @@ describe('when there is initially some notes saved', () => {
 
   test('notes are returned as json', async () => {
     await api
-        .get('/api/notes')
-        .expect(200)
-        .expect('Content-Type', /application\/json/)
+      .get('/api/notes')
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
   })
 
   test('all notes are returned', async () => {
@@ -45,9 +45,9 @@ describe('when there is initially some notes saved', () => {
       const noteToView = notesAtStart[0]
 
       const resultNote = await api
-          .get(`/api/notes/${noteToView.id}`)
-          .expect(200)
-          .expect('Content-Type', /application\/json/)
+        .get(`/api/notes/${noteToView.id}`)
+        .expect(200)
+        .expect('Content-Type', /application\/json/)
 
       assert.deepStrictEqual(resultNote.body, noteToView)
     })
@@ -56,16 +56,16 @@ describe('when there is initially some notes saved', () => {
       const validNonexistingId = await helper.nonExistingId()
 
       await api
-          .get(`/api/notes/${validNonexistingId}`)
-          .expect(404)
+        .get(`/api/notes/${validNonexistingId}`)
+        .expect(404)
     })
 
     test('fails with statuscode 400 id is invalid', async () => {
       const invalidId = '5a3d5da59070081a82a3445'
 
       await api
-          .get(`/api/notes/${invalidId}`)
-          .expect(400)
+        .get(`/api/notes/${invalidId}`)
+        .expect(400)
     })
   })
 
@@ -82,19 +82,19 @@ describe('when there is initially some notes saved', () => {
 
       try {
         await api
-            .post('/api/users')
-            .send(testUser)
+          .post('/api/users')
+          .send(testUser)
       } catch (error) {
         // User might already exist, that's ok
       }
 
       // Login to get the token
       const response = await api
-          .post('/api/login')
-          .send({
-            username: testUser.username,
-            password: testUser.password
-          })
+        .post('/api/login')
+        .send({
+          username: testUser.username,
+          password: testUser.password
+        })
 
       token = response.body.token
     })
@@ -106,11 +106,11 @@ describe('when there is initially some notes saved', () => {
       }
 
       await api
-          .post('/api/notes')
-          .set('Authorization', `Bearer ${token}`) // Add the token to request headers
-          .send(newNote)
-          .expect(201)
-          .expect('Content-Type', /application\/json/)
+        .post('/api/notes')
+        .set('Authorization', `Bearer ${token}`) // Add the token to request headers
+        .send(newNote)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
 
       // Rest of your test verification code...
     })
@@ -121,9 +121,9 @@ describe('when there is initially some notes saved', () => {
       }
 
       await api
-          .post('/api/notes')
-          .send(newNote)
-          .expect(400)
+        .post('/api/notes')
+        .send(newNote)
+        .expect(400)
 
       const notesAtEnd = await helper.notesInDb()
 
@@ -137,8 +137,8 @@ describe('when there is initially some notes saved', () => {
       const noteToDelete = notesAtStart[0]
 
       await api
-          .delete(`/api/notes/${noteToDelete.id}`)
-          .expect(204)
+        .delete(`/api/notes/${noteToDelete.id}`)
+        .expect(204)
 
       const notesAtEnd = await helper.notesInDb()
 
@@ -170,10 +170,10 @@ describe('when there is initially one user at db', () => {
     }
 
     await api
-        .post('/api/users')
-        .send(newUser)
-        .expect(201)
-        .expect('Content-Type', /application\/json/)
+      .post('/api/users')
+      .send(newUser)
+      .expect(201)
+      .expect('Content-Type', /application\/json/)
 
     const usersAtEnd = await helper.usersInDb()
     assert.strictEqual(usersAtEnd.length, usersAtStart.length + 1)
@@ -192,10 +192,10 @@ describe('when there is initially one user at db', () => {
     }
 
     const result = await api
-        .post('/api/users')
-        .send(newUser)
-        .expect(400)
-        .expect('Content-Type', /application\/json/)
+      .post('/api/users')
+      .send(newUser)
+      .expect(400)
+      .expect('Content-Type', /application\/json/)
 
     const usersAtEnd = await helper.usersInDb()
     assert(result.body.error.includes('expected `username` to be unique'))
