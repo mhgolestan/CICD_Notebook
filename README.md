@@ -18,7 +18,6 @@ A modern web application for creating and managing notes with user authenticatio
 - Vite
 - Testing Library
 - Axios
-- 
 
 ### Backend
 - Node.js
