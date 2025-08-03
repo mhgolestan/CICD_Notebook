@@ -10,6 +10,12 @@ jobs:
   verify_and_build:
     name: 'Verify and Build'
     runs-on: ubuntu-22.04
+    env:
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      BEPORT: 3001
+      PORT: 3000
+      TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+      SECRET: ${{ secrets.SECRET }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -25,10 +31,6 @@ jobs:
         run: npm run eslint
 
       - name: Test Suite
-        env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
-          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
-          SECRET: ${{ secrets.SECRET }}
         run: |
           npm run test
           npm run test:e2e
