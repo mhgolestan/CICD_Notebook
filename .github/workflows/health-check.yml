@@ -1,0 +1,44 @@
+name: Website Health Check
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '*/10 * * * *'  # Runs every 10 minutes
+
+jobs:
+  health_check:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Check website health
+        uses: jtalk/url-health-check-action@v4
+        with:
+          url: https://cicd-practice-bhba.onrender.com
+          follow-redirect: false
+          max-attempts: 3
+          retry-delay: 5s
+          retry-all: false
+
+      - name: Discord Notification
+        if: always()
+        uses: sarisia/actions-status-discord@v1.15.3
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: "✅ Website Health Check Successful"
+          description: "All monitored endpoints are responding correctly."
+          color: 0x00FF00
+          username: "Health Check Bot"
+          status: success
+
+      - name: Notify Health Check Failure
+        if: failure()
+        uses: sarisia/actions-status-discord@v1.15.3
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: "❌ Website Health Check Failed!"
+          description: "The website health check has detected issues with the service."
+          color: 0xFF0000
+          username: "Health Check Bot"
+          status: failure
+
