@@ -11,7 +11,7 @@
     "test:server": "cd server && NODE_ENV=test node --test",
     "test:client": "cd client && npm run test",
     "start:test:server": "cd server && NODE_ENV=test node index.js",
-    "test:e2e":"concurrently \"npm run start:test:server\" \"npm run dev:client\" \"playwright test\"",
+    "test:e2e": "concurrently \"npm run start:test:server\" \"npm run dev:client\" \"playwright test\"",
     "build": "cd client && npm run build",
     "eslint": "concurrently \"npm run eslint:server\" \"npm run eslint:client\"",
     "eslint:server": "cd server && eslint .",
@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.5.0",
+    "@playwright/test": "^1.54.1",
     "@stylistic/eslint-plugin-js": "^1.6.1",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
@@ -56,6 +57,6 @@
     "supertest": "^6.3.4",
     "vite": "^4.4.5",
     "vitest": "^1.3.1",
-    "@playwright/test": "^1.54.1"
+    "wait-on": "^8.0.4"
   }
 }
