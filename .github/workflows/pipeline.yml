@@ -11,11 +11,6 @@ jobs:
     name: 'Verify and Build'
     runs-on: ubuntu-22.04
     steps:
-      - name: print env variables
-        env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
-        run: echo {{ MONGODB_URI }}
-
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
