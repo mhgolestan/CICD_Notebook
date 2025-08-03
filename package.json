@@ -13,11 +13,10 @@
     "start:test:server": "cd server && NODE_ENV=test node index.js",
     "test:e2e":"concurrently \"npm run start:test:server\" \"npm run dev:client\" \"playwright test\"",
     "build": "cd client && npm run build",
-    "lint": "concurrently \"npm run lint:server\" \"npm run client:client\"",
-    "lint:server": "cd server && eslint .",
-    "lint:client": "cd client && eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "install:all": "npm install && cd client && npm install && cd ../server && npm install",
-    "build:server": "cd server && "
+    "eslint": "concurrently \"npm run eslint:server\" \"npm run eslint:client\"",
+    "eslint:server": "cd server && eslint .",
+    "eslint:client": "cd client && eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install"
   },
   "author": "",
   "license": "ISC",
