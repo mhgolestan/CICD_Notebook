@@ -1,6 +1,6 @@
 POST http://localhost:3000/api/notes/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1oZ29sZXN0YW4iLCJpZCI6IjY4OTMwMzMwNTFhYWUyMjEwZWZlYjA3YSIsImlhdCI6MTc1NDQ2NTA5MX0.3Qk5N1Qb6_jOdhdsPJyzhR9hKXy6Hbbp5jSjhAVLlV0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1oZ29sZXN0YW4iLCJpZCI6IjY4OTMzZTFlNzc2YzgyOTQ5YTBiOGY2NCIsImlhdCI6MTc1NDQ4MDE2N30.eMnC4hxsuo3wKoXKwBwmfqU8vUEqjjzYDM4tA0SmsZs
 
 {
   "content": "double page apps use token based auth",
