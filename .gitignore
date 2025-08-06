@@ -5,4 +5,4 @@ client/dist
 playwright-report
 test-results
 cheetsheet
-server/mongo/mongo-data
+mongo-data
