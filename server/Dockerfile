@@ -2,12 +2,14 @@ FROM node:20
 
 WORKDIR /usr/src/app
 
-COPY --chown=node:node . .
-
-COPY . .
+COPY package*.json ./
 
 RUN npm ci --omit=dev
 
+COPY --chown=node:node . .
+
+ENV NODE_ENV=production
+
 USER node
 
-CMD ["npm", "start"]
+CMD ["node", "index.js"]
