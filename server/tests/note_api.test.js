@@ -8,8 +8,8 @@ const bcrypt = require('bcrypt')
 
 const helper = require('./test_helper')
 
-const User = require('../models/user')
-const Note = require('../models/note')
+const User = require('../mongo/models/user')
+const Note = require('../mongo/models/note')
 
 describe('when there is initially some notes saved', () => {
   beforeEach(async () => {

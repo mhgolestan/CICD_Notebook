@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const notesRouter = require('express').Router()
-const Note = require('../models/note')
-const User = require('../models/user')
+const Note = require('../mongo/models/note')
+const User = require('../mongo/models/user')
 
 const getTokenFrom = request => {
   const authorization = request.get('authorization')

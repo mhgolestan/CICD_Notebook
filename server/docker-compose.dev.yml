@@ -1,0 +1,32 @@
+services:
+  server:
+    image: server-dev
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGODB_URI=mongodb://root:example@mongo:27017/the_database?authSource=admin
+      - NODE_ENV=development
+      - PORT=3000
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+      - MONGO_INITDB_DATABASE=the_database
+    volumes:
+      - ./mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

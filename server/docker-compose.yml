@@ -1,0 +1,6 @@
+services:
+  server:
+    image: server
+    build: .
+    ports:
+      - 3000:3000
